@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro a Simon Says</title>
+</head>
+<body>
+    <div class="container">
+        <form id="myForm">
+                <label for="inputData">Ingresa tu Nombre:</label>
+                <input type="text" id="inputData" name="inputData">
+                <button type="button" onclick="sendData()">Enviar</button>
+        </form>
+        
+        <script>
+                function sendData() {
+                    const input = document.getElementById('inputData').value;
+                    localStorage.setItem('inputData', input);
+                    window.location.href = 'page.html';
+                }
+        </script>
+    </div>
+</body>
+</html>
