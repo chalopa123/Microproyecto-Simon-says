@@ -8,8 +8,10 @@ const messageDisplay = document.getElementById('message');
 let sequence = [];
 let playerSequence = [];
 let round = 0;
-/* let nombre = localStorage.getItem('Nombre') */
-let highscore = localStorage.getItem('highscore') || 0;
+
+// Highscore implementation with username
+let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+let highscore = Math.max(...highScores.map(score => score.score), 0);
 highscoreDisplay.textContent = highscore;
 
 buttons.forEach(button => {
@@ -48,7 +50,7 @@ function flashButton(button) {
     button.classList.add('active');
     setTimeout(() => {
         button.classList.remove('active');
-    }, 300); 
+    }, 300);
 }
 
 function playSequence() {
@@ -69,7 +71,8 @@ function checkSequence() {
         messageDisplay.textContent = 'Juego Terminado';
         if (round > highscore) {
             highscore = round;
-            localStorage.setItem('highscore', highscore);
+            const username = localStorage.getItem('inputData');
+            saveHighScore(username, highscore);
             highscoreDisplay.textContent = highscore;
         }
     } else if (playerSequence.length === sequence.length) {
@@ -84,3 +87,30 @@ function resetGame() {
     round = 0;
     roundDisplay.textContent = round;
 }
+
+// Save high score with username and update local storage
+function saveHighScore(name, score) {
+    highScores.push({ name, score });
+    highScores.sort((a, b) => b.score - a.score);
+    highScores = highScores.slice(0, 10);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    displayHighScores();
+}
+
+// Display high scores
+function displayHighScores() {
+    const highScoresList = document.getElementById('high-scores-list');
+    highScoresList.innerHTML = highScores.map(scoreEntry => 
+        `<li>${scoreEntry.name}: ${scoreEntry.score}</li>`
+    ).join('');
+}
+
+// Initialize high scores on page load
+document.addEventListener('DOMContentLoaded', displayHighScores);
+
+// Sound effects
+document.querySelectorAll('.button').forEach(button => {
+    button.addEventListener('click', function() {
+        document.getElementById(`${this.id}-sound`).play();
+    });
+});
