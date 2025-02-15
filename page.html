@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Says</title>
+    <link rel="stylesheet" href="código.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Simon Says</h1>
+        <div class="buttons">
+            <div class="button red" id="red"></div>
+            <div class="button green" id="green"></div>
+            <div class="button blue" id="blue"></div>
+            <div class="button yellow" id="yellow"></div>
+        </div>
+        <button id="start">Comenzar</button>
+        <div class="score">
+            <p>Ronda: <span id="round">0</span></p>
+            <p>Mejor Puntaje: <span id="highscore">0</span></p>
+            <p>Nombre: <span id="outputData">0</span></p> 
+        </div>
+        <div class="message" id="message"></div>
+        <button id="reset">Reiniciar</button>
+    </div>
+    <script src="juego.js">
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const data = localStorage.getItem('inputData');
+            document.getElementById('outputData').innerText = data;
+        });
+    </script>
+    
+</body>
+</html>
