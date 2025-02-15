@@ -15,6 +15,12 @@
             <div class="button blue" id="blue"></div>
             <div class="button yellow" id="yellow"></div>
         </div>
+
+        <audio id="red-sound" src="stone-effect-254998.mp3"></audio>
+        <audio id="green-sound" src="stone-effect-254998.mp3"></audio>
+        <audio id="blue-sound" src="stone-effect-254998.mp3"></audio>
+        <audio id="yellow-sound" src="stone-effect-254998.mp3"></audio>
+
         <button id="start">Comenzar</button>
         <div class="score">
             <p>Ronda: <span id="round">0</span></p>
@@ -22,15 +28,16 @@
             <p>Nombre: <span id="outputData">0</span></p> 
         </div>
         <div class="message" id="message"></div>
-        <button type="button" onclick="sendReboot()">Enviar</button>
+        <button id="reset">Reiniciar</button>
+        <div class="high-score-list">
+            <h3>Mejores Puntajes</h3>
+            <ul id="high-scores-list"></ul>
+            
+        </div>
     </div>
     <script src="juego.js">
     </script>
     <script>
-        function sendReboot() {
-            window.location.href = 'index.html';
-                }
-        
         document.addEventListener('DOMContentLoaded', (event) => {
             const data = localStorage.getItem('inputData');
             document.getElementById('outputData').innerText = data;
