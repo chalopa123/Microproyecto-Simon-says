@@ -9,7 +9,6 @@ let sequence = [];
 let playerSequence = [];
 let round = 0;
 
-// Highscore implementation with username
 let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 let highscore = Math.max(...highScores.map(score => score.score), 0);
 highscoreDisplay.textContent = highscore;
@@ -88,7 +87,6 @@ function resetGame() {
     roundDisplay.textContent = round;
 }
 
-// Save high score with username and update local storage
 function saveHighScore(name, score) {
     highScores.push({ name, score });
     highScores.sort((a, b) => b.score - a.score);
@@ -97,7 +95,6 @@ function saveHighScore(name, score) {
     displayHighScores();
 }
 
-// Display high scores
 function displayHighScores() {
     const highScoresList = document.getElementById('high-scores-list');
     highScoresList.innerHTML = highScores.map(scoreEntry => 
@@ -105,10 +102,8 @@ function displayHighScores() {
     ).join('');
 }
 
-// Initialize high scores on page load
 document.addEventListener('DOMContentLoaded', displayHighScores);
 
-// Sound effects
 document.querySelectorAll('.button').forEach(button => {
     button.addEventListener('click', function() {
         document.getElementById(`${this.id}-sound`).play();
