@@ -44,8 +44,8 @@ body {
 }
 
 .button.active {
-    opacity: 0.5; /* Cambia la opacidad para el efecto de flash */
-    transform: scale(1.1); /* Aumenta ligeramente el tamaño del botón */
+    opacity: 0.5;
+    transform: scale(1.1);
 }
 
 button {
@@ -63,7 +63,6 @@ button {
     font-weight: bold;
 }
 
-/* Estilos para pantallas pequeñas */
 @media (max-width: 600px) {
     .buttons {
         grid-template-columns: repeat(2, 80px);
