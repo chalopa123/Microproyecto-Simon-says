@@ -28,7 +28,7 @@
             <p>Nombre: <span id="outputData">0</span></p> 
         </div>
         <div class="message" id="message"></div>
-        <button id="reset">Reiniciar</button>
+        <button type="button" onclick="sendReboot()">Reiniciar</button>
         <div class="high-score-list">
             <h3>Mejores Puntajes</h3>
             <ul id="high-scores-list"></ul>
@@ -38,6 +38,9 @@
     <script src="juego.js">
     </script>
     <script>
+        function sendReboot() {
+            window.location.href = 'index.html';
+                }
         document.addEventListener('DOMContentLoaded', (event) => {
             const data = localStorage.getItem('inputData');
             document.getElementById('outputData').innerText = data;
